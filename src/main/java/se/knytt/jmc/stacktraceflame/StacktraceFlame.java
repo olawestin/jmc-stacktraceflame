@@ -52,7 +52,7 @@ public class StacktraceFlame {
 			for (StacktraceFrame tailFrame : branch.getTailFrames()) {
 				// Look for non-branching leafs
 				if (tailFrame.getItemCount() < itemCount) {
-					out.println(branchFrameNames + " " + (itemCount - tailFrame.getItemCount()));
+					out.print(branchFrameNames + " " + (itemCount - tailFrame.getItemCount()) + "\n");
 					countedFrame = tailFrame;
 					itemCount = tailFrame.getItemCount();
 				}
@@ -61,7 +61,7 @@ public class StacktraceFlame {
 			Fork endFork = branch.getEndFork();
 			if (itemCount - endFork.getItemsInFork() > 0) {
 				// No need to print forking frame if it is not a leaf
-				out.println(branchFrameNames + " " + (itemCount - endFork.getItemsInFork()));
+				out.print(branchFrameNames + " " + (itemCount - endFork.getItemsInFork()) + "\n");
 			}
 			printFlameData(endFork, branchFrameNames + ";", out);
 		}
